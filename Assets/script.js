@@ -35,15 +35,16 @@ var questions = [
 
 var currentQuestionIndex = 0;
 var currentQuestion = questions[currentQuestionIndex];
-var countdownEl = document.getElementById("#timer");
+// var countdownEl = document.getElementById("#timer");
 var timer;
 var timerCount;
+var timeInterval;
 var buttonChoices = document.querySelectorAll(".answer-choice");
 var btn = document.getElementById("start-button");
 var container = document.getElementById("container");
 var display = document.getElementById("display");
 var questionPlaceholder = document.querySelector(".questions");
-var timeInterval;
+
 var displayChoice = document.querySelector(".displayChoice");
 
 // var displayQuestion = document.getElementById("questions");
@@ -56,11 +57,12 @@ displayChoice.style.display = "none";
 
 //When the Start button is clicked the questions and choices are displayed and the start button as well as the text disappear
 btn.addEventListener("click", () => {
+    countDown();
     btn.style.display = "none";
     container.style.display = "none";
     questionPlaceholder.style.display = "block";
     displayChoice.style.display = "block";
-    startQuiz();
+    startQuestions();
 
 });
 
@@ -68,13 +70,12 @@ btn.addEventListener("click", () => {
 
 function startQuestions() {
 
- 
     // setting the text content to our button choices
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices.value = currentQuestion.answers;
         buttonChoices[i].textContent = i + 1 + currentQuestion.answers[i];
     }
-    // when buttons are clicked goes to the next question
+    // when buttons are clicked you are taken to the next question
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices[i].addEventListener("click" , function(event){
             var element = event.target;
@@ -86,20 +87,41 @@ function startQuestions() {
 }
 
 
-        function startTimer() {
+timeLeftDisplay = document.getElementById("#timer");
+
+function countDown(){
     var timeLeft = 75;
-    timeInterval = setInterval(function(){
-        if (timeLeft > 1){
-            timerElement.textContent = timeLeft + ' seconds remaining';
+    var timeInterval = setInterval(function(){
+        if(timeLeft > 1) {
+            timeLeftDisplay.textContent = timeLeft + ' seconds remaining';
             timeLeft--;
         } else if (timeLeft === 1){
-            timerElement.textContent = timeLeft +' seconds remaining';
+            timeLeftDisplay.textContent = timeLeft + ' seconds remaining';
             timeLeft--;
-        }else{
-            timerElement.textContent = '';
-            clearInterval();
-        }
-    }, 7500); 
+        }else {
+            timeLeftDisplay.textContent = '';
+            clearInterval(timeInterval);
+        } 
+    }, 75000);
+}
+
+
+
+//     function startTimer() {
+//     var timeLeft = 75;
+//     var timeInterval = setInterval(function(){
+//         if (timeLeft > 1){
+//             timerElement.textContent = timeLeft + ' seconds remaining';
+//             timeLeft--;
+//         } else if (timeLeft === 1){
+//             timerElement.textContent = timeLeft +' seconds remaining';
+//             timeLeft--;
+//         }else{
+//             timerElement.textContent = '';
+//             clearInterval();
+//         }
+//     }, 7500); 
+// }
 
 // Create a variable currentQuestionIndex that holds 0 - which identifies an index
 // Create another variable that holds the object and variable just created in an array called currentQuestion
@@ -127,15 +149,6 @@ function startQuestions() {
 
 
 // })
-
-
-
-
-// console.log(questions[0].q);
-
-
-
-
 
 
 
