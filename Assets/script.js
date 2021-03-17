@@ -29,7 +29,7 @@ var questions = [
         answer: "src"
     }
 
-]
+];
 
 
 
@@ -42,30 +42,33 @@ var buttonChoices = document.querySelectorAll(".answer-choice");
 var btn = document.getElementById("start-button");
 var container = document.getElementById("container");
 var display = document.getElementById("display");
-var questionPlaceholder = document.getElementById(".question");
+var questionPlaceholder = document.querySelector(".questions");
 var timeInterval;
+var displayChoice = document.querySelector(".displayChoice");
 
 // var displayQuestion = document.getElementById("questions");
 // var displayAnswer = document.getElementById("answer-choice");
 
 
 // answer choice and question classes need to be hidden until start button is clicked
+questionPlaceholder.style.display = "none";
+displayChoice.style.display = "none";
 
-// questionPlaceholder.style.display = "none";
-// buttonChoices.style.display = "none";
-
+//When the Start button is clicked the questions and choices are displayed and the start button as well as the text disappear
 btn.addEventListener("click", () => {
-    btn.style.display = "none"
-    container.style.display = "none"
+    btn.style.display = "none";
+    container.style.display = "none";
+    questionPlaceholder.style.display = "block";
+    displayChoice.style.display = "block";
     startQuiz();
 
-})
+});
 
 // questionPlaceholder.style.display = "block";
 
 function startQuestions() {
 
-    startTimer();
+ 
     // setting the text content to our button choices
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices.value = currentQuestion.answers;
@@ -78,25 +81,25 @@ function startQuestions() {
           
             console.log(element.textContent);
             startQuestions();
-        })
+        });
     }
-};
+}
 
 
-    //     function startTimer() {
-    // var timeLeft = 75;
-    // timeInterval = setInterval(function(){
-    //     if (timeLeft > 1){
-    //         timerElement.textContent = timeLeft + ' seconds remaining';
-    //         timeLeft--;
-    //     } else if (timeLeft === 1){
-    //         timerElement.textContent = timeLeft +' seconds remaining';
-    //         timeLeft--;
-    //     }else{
-    //         timerElement.textContent = '';
-    //         clearInterval();
-    //     }
-    // }, 7500); 
+        function startTimer() {
+    var timeLeft = 75;
+    timeInterval = setInterval(function(){
+        if (timeLeft > 1){
+            timerElement.textContent = timeLeft + ' seconds remaining';
+            timeLeft--;
+        } else if (timeLeft === 1){
+            timerElement.textContent = timeLeft +' seconds remaining';
+            timeLeft--;
+        }else{
+            timerElement.textContent = '';
+            clearInterval();
+        }
+    }, 7500); 
 
 // Create a variable currentQuestionIndex that holds 0 - which identifies an index
 // Create another variable that holds the object and variable just created in an array called currentQuestion
@@ -138,20 +141,10 @@ function startQuestions() {
 
 
 
-function startQuiz() {
+// function startQuiz() {
 
-    // timerCount = 75;
-    // startTimer()
-    startQuestions()
+//     // timerCount = 75;
+//     // startTimer()
+//     startQuestions()
 
-}
-
-
-
-
-
-
-
-
-
-btn.addEventListener("click", startQuiz);
+// }

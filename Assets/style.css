@@ -55,6 +55,7 @@
 .questions{
     text-align:center;
     padding-bottom: 30px;
+   
 }
 
 .highscores{
@@ -82,7 +83,7 @@
 
 }
 
-#display {
+.displayChoice {
     display: flex;
     flex-direction: column;
     padding-left:600px;
