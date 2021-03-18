@@ -87,7 +87,7 @@ function startQuestions() {
 }
 
 
-timeLeftDisplay = document.getElementById("#timer");
+timeLeftDisplay = document.getElementById("timer");
 
 function countDown(){
     var timeLeft = 75;
