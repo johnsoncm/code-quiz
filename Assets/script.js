@@ -55,7 +55,7 @@ var displayChoice = document.querySelector(".displayChoice");
 questionPlaceholder.style.display = "none";
 displayChoice.style.display = "none";
 
-//When the Start button is clicked the questions and choices are displayed and the start button as well as the text disappear
+//When the Start button is clicked the questions and choices are displayed and the start button as well as the text disappear. The countdown begins.
 btn.addEventListener("click", () => {
     countDown();
     btn.style.display = "none";
@@ -66,11 +66,11 @@ btn.addEventListener("click", () => {
 
 });
 
-// questionPlaceholder.style.display = "block";
+
 
 function startQuestions() {
 
-    // setting the text content to our button choices
+    // Setting the text content to our button choices
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices.value = currentQuestion.answers;
         buttonChoices[i].textContent = i + 1 + currentQuestion.answers[i];
@@ -90,38 +90,36 @@ function startQuestions() {
 timeLeftDisplay = document.getElementById("timer");
 
 function countDown(){
-    var timeLeft = 75;
+    var timeLeft = 50;
     var timeInterval = setInterval(function(){
         if(timeLeft > 1) {
-            timeLeftDisplay.textContent = timeLeft + ' seconds remaining';
+            timeLeftDisplay.textContent = timeLeft + ' :Seconds Remaining';
             timeLeft--;
         } else if (timeLeft === 1){
-            timeLeftDisplay.textContent = timeLeft + ' seconds remaining';
+            timeLeftDisplay.textContent = timeLeft + ' :Seconds Remaining';
             timeLeft--;
         }else {
             timeLeftDisplay.textContent = '';
             clearInterval(timeInterval);
+            endGame();
         } 
-    }, 75000);
+    }, 1000);
+}
+
+function endGame(){
+    // When endGame is called: 
+        //redirect to highscores.html; user saves initials, which is saved to localstorage
+        //after initials are submitted - a log of users appears w/ scores
+        //play again button redirects to index.html
 }
 
 
 
-//     function startTimer() {
-//     var timeLeft = 75;
-//     var timeInterval = setInterval(function(){
-//         if (timeLeft > 1){
-//             timerElement.textContent = timeLeft + ' seconds remaining';
-//             timeLeft--;
-//         } else if (timeLeft === 1){
-//             timerElement.textContent = timeLeft +' seconds remaining';
-//             timeLeft--;
-//         }else{
-//             timerElement.textContent = '';
-//             clearInterval();
-//         }
-//     }, 7500); 
-// }
+
+
+
+
+
 
 // Create a variable currentQuestionIndex that holds 0 - which identifies an index
 // Create another variable that holds the object and variable just created in an array called currentQuestion
