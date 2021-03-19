@@ -1,7 +1,7 @@
 var questions = [
     {
         q: "What does CSS stand for?",
-        answers: ["Computer System Styles", "Compute Styles Syntax", "Compact Style System", "Cascading Style Sheets"],
+        choices: ["Computer System Styles", "Compute Styles Syntax", "Compact Style System", "Cascading Style Sheets"],
         answer: "Cascading Style Sheets"
     },
 
@@ -35,7 +35,7 @@ var questions = [
 
 var currentQuestionIndex = 0;
 var currentQuestion = questions[currentQuestionIndex];
-// var countdownEl = document.getElementById("#timer");
+var countdownEl = document.getElementById("#timer");
 var timer;
 var timerCount;
 var timeInterval;
@@ -68,29 +68,58 @@ btn.addEventListener("click", () => {
 
 
 
-function startQuestions() {
 
-    // Setting the text content to our button choices
+function startQuestions() {
+  
+    // Setting the text content to button choices
     for(var i = 0; i < buttonChoices.length; i++){
-        buttonChoices.value = currentQuestion.answers;
-        buttonChoices[i].textContent = i + 1 + currentQuestion.answers[i];
+        var currentQuestion = questions[currentQuestionIndex];
+        
+        // buttonChoices[i].value = currentQuestion.answers;
+        buttonChoices[i].textContent = i + 1 + currentQuestion.choices[i];
+        
     }
     // when buttons are clicked you are taken to the next question
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices[i].addEventListener("click" , function(event){
             var element = event.target;
-          
-            console.log(element.textContent);
+            currentQuestionIndex++ 
+           
             startQuestions();
         });
     }
 }
 
+function printQuestions(){
+ 
+//will print questions? need to match up to choices
+// console.log(questions[i].q);
+// consol.log(questionPlaceholder);
+// consol.log(q);
+}
+
+ 
+
+
+// evaluates user answer and increase the score by 1 if correct and moves to the next question
+// Moves to the next question if incorrect.
+function evaluateUserChoice(chosen, correct) {
+    if (chosen == correct) {
+        score++;
+        startQuestions();
+    }else {
+        console.log('incorrect');
+        startQuestions();
+    }
+}
+
+
+
 
 timeLeftDisplay = document.getElementById("timer");
 
 function countDown(){
-    var timeLeft = 50;
+    var timeLeft = 25;
     var timeInterval = setInterval(function(){
         if(timeLeft > 1) {
             timeLeftDisplay.textContent = timeLeft + ' :Seconds Remaining';
@@ -106,12 +135,47 @@ function countDown(){
     }, 1000);
 }
 
+
+
 function endGame(){
     // When endGame is called: 
         //redirect to highscores.html; user saves initials, which is saved to localstorage
+
         //after initials are submitted - a log of users appears w/ scores
-        //play again button redirects to index.html
+       
+
+
+        //Clicking the Submit button will redirect you to highscores.html page where you will be able to view high scores
+
+        var submitButton = document.getElementById("submit");
+        submitButton.addEventListener("click" , window.location.href="highscores.html" )
+
+         //play again button redirects to index.html
+        var playButton = document.getElementById("");
+        playButton.addEventListener("click" , window.location.href="index.html");
+
+
+        
 }
+
+//NEED TO UPDATE THIS SECTION
+//display scores is hidden  until endGame is called
+
+// endGame();
+// var displayScores = document.getElementById("highscores-display");
+// displayScores.style.display = "none";
+
+// displayScores.style.display = "block";
+
+// btn.addEventListener("click", () => {
+//     countDown();
+//     btn.style.display = "none";
+//     container.style.display = "none";
+//     questionPlaceholder.style.display = "block";
+//     displayChoice.style.display = "block";
+//     startQuestions();
+
+// });
 
 
 

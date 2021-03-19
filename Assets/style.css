@@ -88,6 +88,7 @@
     flex-direction: column;
     padding-left:600px;
     padding-right: 600px ;
+    margin:80px;
 
 }
 
@@ -99,6 +100,19 @@
     margin-top: -55px;
     
  
+}
+
+#highscores-display {
+    text-align: center;
+    padding-top:100px;
+}
+
+#paragraphspacing{
+    padding-top: 30px; 
+    padding-bottom: 30px;
+}
+#submit{
+   
 }
 
 @media screen and (max-width: 768){
