@@ -70,14 +70,17 @@ btn.addEventListener("click", () => {
 
 
 function startQuestions() {
-  
+//set currentQuestion
+//get currentQuestion.q and set the text of the html element where the question goes
+//loop over currentQuestion.choices and set the text of each html element where the choices go
+
+var currentQuestion = questions[currentQuestionIndex];
+currentQuestion.q.textContent = questionPlaceholder;
+
     // Setting the text content to button choices
     for(var i = 0; i < buttonChoices.length; i++){
-        var currentQuestion = questions[currentQuestionIndex];
-        
-        // buttonChoices[i].value = currentQuestion.answers;
         buttonChoices[i].textContent = i + 1 + currentQuestion.choices[i];
-        
+    
     }
     // when buttons are clicked you are taken to the next question
     for(var i = 0; i < buttonChoices.length; i++){
