@@ -39,19 +39,20 @@ var countdownEl = document.getElementById("#timer");
 var timer;
 var timerCount;
 var timeInterval;
+var timeLeft;
 var buttonChoices = document.querySelectorAll(".answer-choice");
 var btn = document.getElementById("start-button");
 var container = document.getElementById("container");
 var display = document.getElementById("display");
 var questionPlaceholder = document.querySelector(".questions");
-
 var displayChoice = document.querySelector(".displayChoice");
-
-// var displayQuestion = document.getElementById("questions");
-// var displayAnswer = document.getElementById("answer-choice");
+var finalScore = document.querySelector("final-score");
 
 
-// answer choice and question classes need to be hidden until start button is clicked
+
+
+
+// answer choice and question classes are hidden until start button is clicked
 questionPlaceholder.style.display = "none";
 displayChoice.style.display = "none";
 
@@ -75,7 +76,7 @@ function startQuestions() {
 //loop over currentQuestion.choices and set the text of each html element where the choices go
 
 var currentQuestion = questions[currentQuestionIndex];
-currentQuestion.q.textContent = questionPlaceholder;
+questionPlaceholder.textContent = currentQuestion.q;
 
     // Setting the text content to button choices
     for(var i = 0; i < buttonChoices.length; i++){
@@ -83,38 +84,38 @@ currentQuestion.q.textContent = questionPlaceholder;
     
     }
     // when buttons are clicked you are taken to the next question
+    currentQuestionIndex++ 
+
     for(var i = 0; i < buttonChoices.length; i++){
         buttonChoices[i].addEventListener("click" , function(event){
+            console.log("Clicked");
             var element = event.target;
-            currentQuestionIndex++ 
+            
            
             startQuestions();
         });
     }
 }
-
-function printQuestions(){
- 
-//will print questions? need to match up to choices
-// console.log(questions[i].q);
-// consol.log(questionPlaceholder);
-// consol.log(q);
-}
-
  
 
+// // evaluates user answer and increase the score by 1 if correct and moves to the next question
+// // Moves to the next question if incorrect.
+// function evaluateUserChoice(chosen, answer) {
 
-// evaluates user answer and increase the score by 1 if correct and moves to the next question
-// Moves to the next question if incorrect.
-function evaluateUserChoice(chosen, correct) {
-    if (chosen == correct) {
-        score++;
-        startQuestions();
-    }else {
-        console.log('incorrect');
-        startQuestions();
-    }
-}
+//     var correctAnswer = currentQuestion.answer[0];
+    
+// //     // for(var i = 0; i < correctAnswer.length; i++){
+// //     //     correctAnswer[i].textContent = i + 1 + 
+// //     // }
+//    if (correctAnswer = true) {
+//         finalScore++;
+//         startQuestions();
+//     }else {
+//         console.log('incorrect');
+//         timeLeft--
+//         startQuestions();
+//     }
+// } console.log(correctAnswer);
 
 
 
@@ -143,9 +144,11 @@ function countDown(){
 function endGame(){
     // When endGame is called: 
         //redirect to highscores.html; user saves initials, which is saved to localstorage
-
         //after initials are submitted - a log of users appears w/ scores
-       
+       finalScore.display = "block";
+
+       window.localStorage.setItem('user initials');
+       console.log(localStorage);
 
 
         //Clicking the Submit button will redirect you to highscores.html page where you will be able to view high scores
