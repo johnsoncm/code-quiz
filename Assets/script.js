@@ -20,7 +20,7 @@ var questions = [
     {
         q: "Which array method adds an element at the end of the array?",
         choices: [".add()", ".join()", ".push()", ".pop()"],
-        answer: "push()"
+        answer: ".push()"
     },
 
     {
@@ -44,11 +44,9 @@ var score = 0;
 var buttonChoices = document.querySelectorAll(".answer-choice");
 var btn = document.getElementById("start-button");
 var container = document.getElementById("container");
-var display = document.getElementById("display");
 var questionPlaceholder = document.querySelector(".questions");
 var displayChoice = document.querySelector(".displayChoice");
 var finalScore = document.querySelector(".final-score");
-console.log("click" , finalScore);
 var gameBox = document.querySelector(".gamebox");
 var highScoresDisplay = document.getElementById("highscores-display");
 
@@ -97,36 +95,40 @@ for(var i = 0; i < buttonChoices.length; i++){
     buttonChoices[i].addEventListener("click" , function(event){
        
         var userChoice = event.target.dataset.answer;
-               
-       if (currentQuestionIndex  >= questions.length){
-           endGame();
-       }else {
-            evaluateUserChoice(userChoice);
-       }
+        evaluateUserChoice(userChoice);
+
+      
+        
+       })
        
-    });
-}
+    };
+
 
 // // evaluates user answer and increase the score by 1 if correct and moves to the next question
 // // Moves to the next question if incorrect.
 
 function evaluateUserChoice(chosen) {
-   
+
     var correctAnswer = questions[currentQuestionIndex-1].answer;
     console.log("compare", correctAnswer, chosen);
    if (correctAnswer === chosen) {
-    finalScore.textContent = score;
     score++;
+    finalScore.textContent = score;
+    
+    console.log(score);
        console.log("correct");
     
-        startQuestions();
-    }else {
-        timeLeft -= 5;
+   } else {
+        timeLeft--;
         console.log('incorrect');
         
-        startQuestions();
     }
+    if (currentQuestionIndex  >= questions.length){
+        endGame();
+    }else {
+        startQuestions(); 
 } 
+}
 
 
 
@@ -157,30 +159,60 @@ function endGame(){
     // When endGame is called: 
         //redirect to highscores.html; user saves initials, which is saved to localstorage
         //after initials are submitted - a log of users appears w/ scores
-        var finalScore = document.querySelector(".final-score");
-        finalScore.style.display = "block";
-
+        // var finalScore = document.querySelector(".final-score");
+        // var score = finalScore
+        // score.style.display = "block";
+       
+    
        gameBox.style.display = "none";
        highScoresDisplay.style.display = "block";
 
-       console.log(finalScore);
+//Clicking the Submit button will redirect you to highscores.html page where you will be able to view high scores
 
 
-    //    window.localStorage.setItem('user initials');
-    //    console.log(localStorage);
 
-
-        //Clicking the Submit button will redirect you to highscores.html page where you will be able to view high scores
-
-        // var submitButton = document.getElementById("submit");
-        // submitButton.addEventListener("click" , window.location.href="highscores.html" )
-        // console.log(submitButton);
-
+       var submitButton = document.getElementById("submit");
+        submitButton.addEventListener("click" , function(){
+            //get user input
+            //update local storage
+            var inputInitials = document.querySelector(".inputinitials").value;
+            var highScores = document.querySelector(".final-score").value;
+    
+            
+            localStorage.setItem("inputinitials", inputInitials);
+            localStorage.setItem("final-score" , highScores);
+            
+            // redirect to high scores page
+            window.location.href="highscores.html"});
+        
+       
       
-
 
         
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// localStorage.setItem("finalScore" , JSON.stringify([]));
+// console.log(localStorage.getItem("finalScore"));
+
 
 //NEED TO UPDATE THIS SECTION
 //display scores is hidden  until endGame is called

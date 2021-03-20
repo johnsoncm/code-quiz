@@ -145,6 +145,16 @@
     padding-bottom: 50px;
 }
 
+.answer-choice{
+    padding: 10px;
+   
+    
+}
+
+#name-input{
+    padding: 50px;
+}
+
 @media screen and (max-width: 768){
     #display{
        width: 100%;
