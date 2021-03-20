@@ -1,5 +1,7 @@
 
 var playAgain = document.getElementById("play-button");
+var highScoresList = document.querySelector("#ordered-list");
+var highScores = JSON.parse(localStorage.getItem(''))
 
 
 playAgain.addEventListener("click", () => {

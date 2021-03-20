@@ -114,6 +114,7 @@
     padding-bottom: 30px;
 }
 #submit{
+    background-color: burlywood;
    
 }
 
@@ -137,6 +138,7 @@
 
 .top-scores{
     text-align: center;
+    
    
 }
 .ordered-list{

@@ -40,6 +40,7 @@ var timer;
 var timerCount;
 var timeInterval;
 var timeLeft;
+var score = 0;
 var buttonChoices = document.querySelectorAll(".answer-choice");
 var btn = document.getElementById("start-button");
 var container = document.getElementById("container");
@@ -87,6 +88,7 @@ questionPlaceholder.textContent = currentQuestion.q;
     }
     // when buttons are clicked you are taken to the next question
     currentQuestionIndex++ 
+   
 
     
 }
@@ -110,15 +112,18 @@ for(var i = 0; i < buttonChoices.length; i++){
 
 function evaluateUserChoice(chosen) {
    
-    var correctAnswer = questions[currentQuestionIndex].answer;
+    var correctAnswer = questions[currentQuestionIndex-1].answer;
     console.log("compare", correctAnswer, chosen);
    if (correctAnswer === chosen) {
+    finalScore.textContent = score;
+    score++;
        console.log("correct");
-        finalScore++;
+    
         startQuestions();
     }else {
+        timeLeft -= 5;
         console.log('incorrect');
-        timeLeft -=5;
+        
         startQuestions();
     }
 } 
@@ -152,10 +157,14 @@ function endGame(){
     // When endGame is called: 
         //redirect to highscores.html; user saves initials, which is saved to localstorage
         //after initials are submitted - a log of users appears w/ scores
-       finalScore.display = "block";
+        var finalScore = document.querySelector(".final-score");
+        finalScore.style.display = "block";
 
        gameBox.style.display = "none";
        highScoresDisplay.style.display = "block";
+
+       console.log(finalScore);
+
 
     //    window.localStorage.setItem('user initials');
     //    console.log(localStorage);
@@ -165,6 +174,7 @@ function endGame(){
 
         // var submitButton = document.getElementById("submit");
         // submitButton.addEventListener("click" , window.location.href="highscores.html" )
+        // console.log(submitButton);
 
       
 
