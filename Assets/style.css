@@ -47,6 +47,7 @@
     color:rgb(73, 40, 24);
     border-radius: 8px;
    
+   
 
    
     
@@ -105,6 +106,7 @@
 #highscores-display {
     text-align: center;
     padding-top:100px;
+    display: none;
 }
 
 #paragraphspacing{
@@ -113,6 +115,32 @@
 }
 #submit{
    
+}
+
+.high-scores-title{
+    text-align: center;
+    font-size: xx-large;
+    padding: 50px;
+}
+#play-button{
+    text-align: center;
+    padding: 20px 52px;
+    line-height: 16px;
+    cursor:pointer;
+    color:rgb(73, 40, 24);
+    border-radius: 8px;
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.top-scores{
+    text-align: center;
+   
+}
+.ordered-list{
+    padding-bottom: 50px;
 }
 
 @media screen and (max-width: 768){

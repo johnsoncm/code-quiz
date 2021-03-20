@@ -34,8 +34,8 @@ var questions = [
 
 
 var currentQuestionIndex = 0;
-var currentQuestion = questions[currentQuestionIndex];
-var countdownEl = document.getElementById("#timer");
+// var currentQuestion = questions[currentQuestionIndex];
+var countdownEl = document.getElementById("timer");
 var timer;
 var timerCount;
 var timeInterval;
@@ -46,8 +46,10 @@ var container = document.getElementById("container");
 var display = document.getElementById("display");
 var questionPlaceholder = document.querySelector(".questions");
 var displayChoice = document.querySelector(".displayChoice");
-var finalScore = document.querySelector("final-score");
-
+var finalScore = document.querySelector(".final-score");
+console.log("click" , finalScore);
+var gameBox = document.querySelector(".gamebox");
+var highScoresDisplay = document.getElementById("highscores-display");
 
 
 
@@ -80,42 +82,47 @@ questionPlaceholder.textContent = currentQuestion.q;
 
     // Setting the text content to button choices
     for(var i = 0; i < buttonChoices.length; i++){
-        buttonChoices[i].textContent = i + 1 + currentQuestion.choices[i];
-    
+        buttonChoices[i].textContent = i + 1 + ". " + currentQuestion.choices[i];
+    buttonChoices[i].setAttribute("data-answer" ,  currentQuestion.choices[i]);
     }
     // when buttons are clicked you are taken to the next question
     currentQuestionIndex++ 
 
-    for(var i = 0; i < buttonChoices.length; i++){
-        buttonChoices[i].addEventListener("click" , function(event){
-            console.log("Clicked");
-            var element = event.target;
-            
-           
-            startQuestions();
-        });
-    }
+    
 }
- 
+
+for(var i = 0; i < buttonChoices.length; i++){
+    buttonChoices[i].addEventListener("click" , function(event){
+       
+        var userChoice = event.target.dataset.answer;
+               
+       if (currentQuestionIndex  >= questions.length){
+           endGame();
+       }else {
+            evaluateUserChoice(userChoice);
+       }
+       
+    });
+}
 
 // // evaluates user answer and increase the score by 1 if correct and moves to the next question
 // // Moves to the next question if incorrect.
-// function evaluateUserChoice(chosen, answer) {
 
-//     var correctAnswer = currentQuestion.answer[0];
-    
-// //     // for(var i = 0; i < correctAnswer.length; i++){
-// //     //     correctAnswer[i].textContent = i + 1 + 
-// //     // }
-//    if (correctAnswer = true) {
-//         finalScore++;
-//         startQuestions();
-//     }else {
-//         console.log('incorrect');
-//         timeLeft--
-//         startQuestions();
-//     }
-// } console.log(correctAnswer);
+function evaluateUserChoice(chosen) {
+   
+    var correctAnswer = questions[currentQuestionIndex].answer;
+    console.log("compare", correctAnswer, chosen);
+   if (correctAnswer === chosen) {
+       console.log("correct");
+        finalScore++;
+        startQuestions();
+    }else {
+        console.log('incorrect');
+        timeLeft -=5;
+        startQuestions();
+    }
+} 
+
 
 
 
@@ -147,18 +154,19 @@ function endGame(){
         //after initials are submitted - a log of users appears w/ scores
        finalScore.display = "block";
 
-       window.localStorage.setItem('user initials');
-       console.log(localStorage);
+       gameBox.style.display = "none";
+       highScoresDisplay.style.display = "block";
+
+    //    window.localStorage.setItem('user initials');
+    //    console.log(localStorage);
 
 
         //Clicking the Submit button will redirect you to highscores.html page where you will be able to view high scores
 
-        var submitButton = document.getElementById("submit");
-        submitButton.addEventListener("click" , window.location.href="highscores.html" )
+        // var submitButton = document.getElementById("submit");
+        // submitButton.addEventListener("click" , window.location.href="highscores.html" )
 
-         //play again button redirects to index.html
-        var playButton = document.getElementById("");
-        playButton.addEventListener("click" , window.location.href="index.html");
+      
 
 
         
