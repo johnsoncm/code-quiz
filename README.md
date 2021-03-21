@@ -2,10 +2,10 @@
 
 [Link to Website] (https://johnsoncm.github.io/code-quiz/)
 
-**![Screenshot of Website](./Assets/images/code/Code_Quiz_Landing_Page.png)**
-**![Screenshot of Website](./Assets/images/code/Code_Quiz_Questions.png)**
-**![Screenshot of Website](./Assets/images/code/Code_Quiz_High_Scores_Page.png)**
-**![Screenshot of Website](./Assets/images/code/Code_Quiz_Over.png)**
+**![Screenshot of Website](./Assets/images/Code_Quiz_Landing_Page.png)**
+**![Screenshot of Website](./Assets/images/Code_Quiz_Questions.png)**
+**![Screenshot of Website](./Assets/images/Code_Quiz_High_Scores_Page.png)**
+**![Screenshot of Website](./Assets/images/Code_Quiz_Over.png)**
 
 The codebase was developed to create a timed code quiz. 
 -Upon clicking the Start button, the timer begins decrementing and the user is presented with a series of questions with multiple choice answers. 
