@@ -25,3 +25,11 @@ There were several pieces I was unable to complete. I commented out my attempts 
 -I wish I had more time to work on the styling elements, but I saved that to the end in order to ensure the functionality of the website.
 
 
+Technologies Used:
+HTML
+CSS
+Javascript
+
+Contact Info:
+Casey Johnson
+johnsoncm3@gmail.com
